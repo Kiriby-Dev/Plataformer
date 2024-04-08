@@ -622,6 +622,7 @@ GameObject:
   - component: {fileID: 945992002}
   - component: {fileID: 945992008}
   - component: {fileID: 945992009}
+  - component: {fileID: 945992012}
   m_Layer: 0
   m_Name: Personaje
   m_TagString: Player
@@ -805,6 +806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saludInicial: 100
   saludMax: 100
+  muerto: 0
 --- !u!50 &945992011
 Rigidbody2D:
   serializedVersion: 4
@@ -832,6 +834,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &945992012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945992001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38163c3c27f3f9a4aaf86a8b70c7c6fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  personajevida: {fileID: 945992009}
 --- !u!1 &1029721273
 GameObject:
   m_ObjectHideFlags: 0
