@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PersonajeVida : VidaBase
@@ -24,6 +25,10 @@ public class PersonajeVida : VidaBase
         if (Input.GetKeyDown(KeyCode.Y)) 
         {
             RestaurarSalud(10);
+        }
+        if (Salud <= 0)
+        {
+            gameObject.GetComponent<PersonajeMovimiento>().enabled = false;
         }
     }
 

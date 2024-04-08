@@ -5,9 +5,10 @@ using UnityEngine;
 public class PersonajeMovimiento : MonoBehaviour
 {
     [SerializeField] private float velocidad;
-    [SerializeField] private float fuerzaSalto;
+    public float fuerzaSalto;
 
     public bool EnMovimiento => direccionMovimiento.magnitude > 0f;
+    public bool tocandoSuelo;
     public Vector2 DireccionMovimiento => direccionMovimiento;
 
     private SpriteRenderer spriteRenderer;
@@ -25,7 +26,7 @@ public class PersonajeMovimiento : MonoBehaviour
     {
         _input = Input.GetAxisRaw("Horizontal");
 
-        if (_input > 0.1f)
+        if (_input > 0f)
         {
             direccionMovimiento.x = 1f;
             spriteRenderer.flipX = false;
@@ -40,13 +41,29 @@ public class PersonajeMovimiento : MonoBehaviour
             direccionMovimiento.x = 0f;
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && tocandoSuelo)
         {
             _rigidbody2D.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
+            tocandoSuelo = false;
         }
     }
 
-        private void FixedUpdate()
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Suelo")
+        {
+            tocandoSuelo = true;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Suelo")
+        {
+            tocandoSuelo = false;
+        }
+    }
+
+    private void FixedUpdate()
         {
         _rigidbody2D.velocity = new Vector2(direccionMovimiento.x * velocidad, _rigidbody2D.velocity.y);
         }
