@@ -806,7 +806,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saludInicial: 100
   saludMax: 100
-  muerto: 0
 --- !u!50 &945992011
 Rigidbody2D:
   serializedVersion: 4
@@ -833,7 +832,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &945992012
 MonoBehaviour:
   m_ObjectHideFlags: 0
