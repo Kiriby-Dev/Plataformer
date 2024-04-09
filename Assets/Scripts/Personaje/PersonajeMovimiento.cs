@@ -23,6 +23,8 @@ public class PersonajeMovimiento : MonoBehaviour
     private Vector2 direccionMovimiento;
     private float _input;
     private bool tocandoSuelo;
+    private float jumpCooldown;
+    private float jumpCoolMax;
     private bool agachado;
     private bool dePie = true;
 
@@ -64,14 +66,34 @@ public class PersonajeMovimiento : MonoBehaviour
             EventoAgachado?.Invoke(agachado);
         }
 
-        if (Input.GetKey(KeyCode.Space) && tocandoSuelo)
+        if (Input.GetKey(KeyCode.Space) && tocandoSuelo && jumpCooldown == 0)
         {
             tocandoSuelo = false;
+            jumpCooldown = jumpCoolMax;
             _rigidbody2D.AddForce(new Vector2(0, fuerzaSalto), ForceMode2D.Impulse);
             PersonajeSalto();
         }
         bool cayendo = _rigidbody2D.velocity.y < 0f;
         EventoCaer?.Invoke(cayendo);
+        if (jumpCooldown > 0)
+        {
+            jumpCooldown -= Time.deltaTime;
+        }
+        else
+        {
+            jumpCooldown = 0;
+        }
+
+        if (agachado)
+        {
+            _rigidbody2D.mass = 3f;
+            jumpCoolMax = 0.5f;
+        }
+        else
+        {
+            _rigidbody2D.mass = 2.2f;
+            jumpCoolMax = 0.6f;
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
