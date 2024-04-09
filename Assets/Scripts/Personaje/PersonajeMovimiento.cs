@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,11 @@ public class PersonajeMovimiento : MonoBehaviour
 {
     [SerializeField] private float velocidad;
     public float fuerzaSalto;
-
+    public static Action EventoSalto;
     public bool EnMovimiento => direccionMovimiento.magnitude > 0f;
     public bool tocandoSuelo;
+    public bool agachado;
+    public bool dePie = true;
     public Vector2 DireccionMovimiento => direccionMovimiento;
 
     private SpriteRenderer spriteRenderer;
@@ -43,8 +46,18 @@ public class PersonajeMovimiento : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && tocandoSuelo)
         {
-            _rigidbody2D.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
-            tocandoSuelo = false;
+            Saltar();
+            PersonajeSalto();
+        }
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            agachado = true;
+            dePie = false;
+        }
+        else 
+        {
+            agachado = false;
+            dePie = true;
         }
     }
 
@@ -67,4 +80,21 @@ public class PersonajeMovimiento : MonoBehaviour
         {
         _rigidbody2D.velocity = new Vector2(direccionMovimiento.x * velocidad, _rigidbody2D.velocity.y);
         }
+
+    void Saltar()
+    {
+        float yInicial = gameObject.transform.position.y;
+        float t = 0;
+        t = Time.deltaTime;
+        Debug.Log(t);
+        while (!tocandoSuelo)
+        {
+            float yFinal = yInicial + (t * fuerzaSalto) + (t * t * 9.81f);
+            gameObject.transform.position = new Vector2(transform.position.x, yFinal);
+        }
+    }
+    private void PersonajeSalto()
+    {
+        EventoSalto?.Invoke();
+    }
 }

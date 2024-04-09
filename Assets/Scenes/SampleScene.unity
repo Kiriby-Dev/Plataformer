@@ -645,6 +645,8 @@ MonoBehaviour:
   velocidad: 8
   fuerzaSalto: 50
   tocandoSuelo: 0
+  agachado: 0
+  dePie: 1
 --- !u!61 &945992004
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -846,6 +848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   personajevida: {fileID: 945992009}
+  personajevidaMovimiento: {fileID: 945992002}
 --- !u!1 &1029721273
 GameObject:
   m_ObjectHideFlags: 0
