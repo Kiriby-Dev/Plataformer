@@ -643,10 +643,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 8
-  fuerzaSalto: 50
+  fuerzaSalto: 20
   tocandoSuelo: 0
   agachado: 0
-  dePie: 1
+  dePie: 0
 --- !u!61 &945992004
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -823,7 +823,7 @@ Rigidbody2D:
   m_Mass: 2.216288
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 20
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

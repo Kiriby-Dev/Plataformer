@@ -44,11 +44,6 @@ public class PersonajeMovimiento : MonoBehaviour
             direccionMovimiento.x = 0f;
         }
 
-        if (Input.GetKey(KeyCode.Space) && tocandoSuelo)
-        {
-            Saltar();
-            PersonajeSalto();
-        }
         if (Input.GetKey(KeyCode.LeftControl))
         {
             agachado = true;
@@ -77,22 +72,16 @@ public class PersonajeMovimiento : MonoBehaviour
     }
 
     private void FixedUpdate()
-        {
-        _rigidbody2D.velocity = new Vector2(direccionMovimiento.x * velocidad, _rigidbody2D.velocity.y);
-        }
-
-    void Saltar()
     {
-        float yInicial = gameObject.transform.position.y;
-        float t = 0;
-        t = Time.deltaTime;
-        Debug.Log(t);
-        while (!tocandoSuelo)
+        _rigidbody2D.velocity = new Vector2(direccionMovimiento.x * velocidad, _rigidbody2D.velocity.y);
+        if (Input.GetKey(KeyCode.Space) && tocandoSuelo)
         {
-            float yFinal = yInicial + (t * fuerzaSalto) + (t * t * 9.81f);
-            gameObject.transform.position = new Vector2(transform.position.x, yFinal);
+            tocandoSuelo = false;
+            _rigidbody2D.AddForce(new Vector2(0,fuerzaSalto), ForceMode2D.Impulse);
+            PersonajeSalto();
         }
     }
+
     private void PersonajeSalto()
     {
         EventoSalto?.Invoke();
