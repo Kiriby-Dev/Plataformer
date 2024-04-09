@@ -50,6 +50,11 @@ public class PersonajeAnimaciones : MonoBehaviour
         }
     }
 
+    private void PersonajeAgachadoRespuesta(bool agachado) 
+    {
+        animator.SetBool("Agachado", agachado);
+    }
+
     private void PersonajeSaltoRespuesta() 
     {
         animator.SetTrigger("Jump");
@@ -73,6 +78,7 @@ public class PersonajeAnimaciones : MonoBehaviour
         PersonajeVida.EventoPersonajeDerrotado += PersonajeDerrotadoRespuesta;
         PersonajeMovimiento.EventoSalto += PersonajeSaltoRespuesta;
         PersonajeMovimiento.EventoCaer += PersonajeCayendoRespuesta;
+        PersonajeMovimiento.EventoAgachado += PersonajeAgachadoRespuesta;
     }
 
     private void OnDisable()
@@ -80,5 +86,6 @@ public class PersonajeAnimaciones : MonoBehaviour
         PersonajeVida.EventoPersonajeDerrotado -= PersonajeDerrotadoRespuesta;
         PersonajeMovimiento.EventoSalto -= PersonajeSaltoRespuesta;
         PersonajeMovimiento.EventoCaer -= PersonajeCayendoRespuesta;
+        PersonajeMovimiento.EventoAgachado -= PersonajeAgachadoRespuesta;
     }
 }

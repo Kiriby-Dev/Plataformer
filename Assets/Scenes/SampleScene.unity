@@ -644,9 +644,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidad: 8
   fuerzaSalto: 20
-  tocandoSuelo: 0
-  agachado: 0
-  dePie: 0
 --- !u!61 &945992004
 BoxCollider2D:
   m_ObjectHideFlags: 0

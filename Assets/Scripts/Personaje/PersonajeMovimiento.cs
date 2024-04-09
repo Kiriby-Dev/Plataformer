@@ -5,20 +5,26 @@ using UnityEngine;
 
 public class PersonajeMovimiento : MonoBehaviour
 {
+    [Header("Configuración")]
     [SerializeField] private float velocidad;
     [SerializeField] private float fuerzaSalto;
+    
     public static Action EventoSalto;
     public static Action<bool> EventoCaer;
+    public static Action<bool> EventoAgachado;
+    
     public bool EnMovimiento => direccionMovimiento.magnitude > 0f;
-    public bool tocandoSuelo;
-    public bool agachado;
-    public bool dePie = true;
     public Vector2 DireccionMovimiento => direccionMovimiento;
+    public bool Agachado => agachado;
+    public bool DePie => dePie;
 
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D _rigidbody2D;
     private Vector2 direccionMovimiento;
     private float _input;
+    private bool tocandoSuelo;
+    private bool agachado;
+    private bool dePie = true;
 
     private void Awake()
     {
@@ -49,11 +55,13 @@ public class PersonajeMovimiento : MonoBehaviour
         {
             agachado = true;
             dePie = false;
+            EventoAgachado?.Invoke(agachado);
         }
         else 
         {
             agachado = false;
             dePie = true;
+            EventoAgachado?.Invoke(agachado);
         }
 
         if (Input.GetKey(KeyCode.Space) && tocandoSuelo)
