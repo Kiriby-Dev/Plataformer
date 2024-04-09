@@ -7,6 +7,7 @@ using UnityEngine;
 public class PersonajeVida : VidaBase
 {
     public static Action EventoPersonajeDerrotado;
+   
     public bool PuedeSerCurado => Salud < saludMax;
 
     protected override void Start()

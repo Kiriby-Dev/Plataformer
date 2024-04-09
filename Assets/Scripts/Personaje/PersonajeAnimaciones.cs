@@ -26,13 +26,6 @@ public class PersonajeAnimaciones : MonoBehaviour
     void Update()
     {
         ActualizarLayers();
-
-        /*if (personajeMovimiento.EnMovimiento == false)
-        {
-            return;
-        }
-        animator.SetFloat("X", personajeMovimiento.DireccionMovimiento.x);
-        animator.SetFloat("Y", personajeMovimiento.DireccionMovimiento.y);*/
     }
 
     private void ActivarLayer(string nombreLayer) 
@@ -57,6 +50,16 @@ public class PersonajeAnimaciones : MonoBehaviour
         }
     }
 
+    private void PersonajeSaltoRespuesta() 
+    {
+        animator.SetTrigger("Jump");
+    }
+
+    private void PersonajeCayendoRespuesta(bool cayendo) 
+    {
+        animator.SetBool("Cayendo", cayendo);
+    }
+
     private void PersonajeDerrotadoRespuesta() 
     {
         if (animator.GetLayerWeight(animator.GetLayerIndex(layerCorrer)) == 1 || animator.GetLayerWeight(animator.GetLayerIndex(layerIdle)) == 1)
@@ -68,10 +71,14 @@ public class PersonajeAnimaciones : MonoBehaviour
     private void OnEnable()
     {
         PersonajeVida.EventoPersonajeDerrotado += PersonajeDerrotadoRespuesta;
+        PersonajeMovimiento.EventoSalto += PersonajeSaltoRespuesta;
+        PersonajeMovimiento.EventoCaer += PersonajeCayendoRespuesta;
     }
 
     private void OnDisable()
     {
         PersonajeVida.EventoPersonajeDerrotado -= PersonajeDerrotadoRespuesta;
+        PersonajeMovimiento.EventoSalto -= PersonajeSaltoRespuesta;
+        PersonajeMovimiento.EventoCaer -= PersonajeCayendoRespuesta;
     }
 }

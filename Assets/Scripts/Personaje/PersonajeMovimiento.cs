@@ -6,8 +6,9 @@ using UnityEngine;
 public class PersonajeMovimiento : MonoBehaviour
 {
     [SerializeField] private float velocidad;
-    public float fuerzaSalto;
+    [SerializeField] private float fuerzaSalto;
     public static Action EventoSalto;
+    public static Action<bool> EventoCaer;
     public bool EnMovimiento => direccionMovimiento.magnitude > 0f;
     public bool tocandoSuelo;
     public bool agachado;
@@ -54,6 +55,15 @@ public class PersonajeMovimiento : MonoBehaviour
             agachado = false;
             dePie = true;
         }
+
+        if (Input.GetKey(KeyCode.Space) && tocandoSuelo)
+        {
+            tocandoSuelo = false;
+            _rigidbody2D.AddForce(new Vector2(0, fuerzaSalto), ForceMode2D.Impulse);
+            PersonajeSalto();
+        }
+        bool cayendo = _rigidbody2D.velocity.y < 0f;
+        EventoCaer?.Invoke(cayendo);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -74,12 +84,6 @@ public class PersonajeMovimiento : MonoBehaviour
     private void FixedUpdate()
     {
         _rigidbody2D.velocity = new Vector2(direccionMovimiento.x * velocidad, _rigidbody2D.velocity.y);
-        if (Input.GetKey(KeyCode.Space) && tocandoSuelo)
-        {
-            tocandoSuelo = false;
-            _rigidbody2D.AddForce(new Vector2(0,fuerzaSalto), ForceMode2D.Impulse);
-            PersonajeSalto();
-        }
     }
 
     private void PersonajeSalto()
