@@ -22,8 +22,7 @@ public class AccionSeguirPersonaje : IAAccion
         float distancia = dirHaciaPersonaje.magnitude;
         if (distancia >= 1.5f) 
         {
-            //controller.rigidbody2D_.AddForce(direccion * controller.VelocidadMovimiento, ForceMode2D.Impulse);
-            controller.rigidbody2D_.AddForce(direccion, ForceMode2D.Force);
+            controller.transform.Translate(direccion * controller.VelocidadMovimiento * Time.deltaTime);
             Debug.Log("Seguir");
         }
         Debug.DrawRay(controller.transform.position, dirHaciaPersonaje, Color.blue);

@@ -17,7 +17,7 @@ public class IAController : MonoBehaviour
     public Transform PersonajeReferencia { get; set; }
     public IAEstado EstadoActual { get; set; }
     public float RangoDeteccion => rangoDeteccion;
-    public float VelocidadMovimiento { get; set; }
+    public float VelocidadMovimiento => velocidadMovimiento;
     public LayerMask PersonajeLayerMask => personajeLayerMask;
 
     private void Start()

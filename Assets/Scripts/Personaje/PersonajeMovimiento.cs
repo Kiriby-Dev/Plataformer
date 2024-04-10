@@ -77,7 +77,7 @@ public class PersonajeMovimiento : MonoBehaviour
             _rigidbody2D.AddForce(new Vector2(0, fuerzaSalto), ForceMode2D.Impulse);
             PersonajeSalto();
         }
-        bool cayendo = _rigidbody2D.velocity.y < 0f;
+        bool cayendo = _rigidbody2D.velocity.y < -0.1f;
         EventoCaer?.Invoke(cayendo);
         if (jumpCooldown > 0)
         {
