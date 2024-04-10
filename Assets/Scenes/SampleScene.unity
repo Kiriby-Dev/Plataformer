@@ -861,6 +861,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackColl: {fileID: 2504283371360959135, guid: 46ab53c1399785e4fa68cbda2cdcc101, type: 3}
+--- !u!1001 &996281322
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2824321874584143732, guid: 653f41ac12d78d244bb354e842841120, type: 3}
+      propertyPath: m_Name
+      value: Moneda
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381059364059748400, guid: 653f41ac12d78d244bb354e842841120, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381059364059748400, guid: 653f41ac12d78d244bb354e842841120, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381059364059748400, guid: 653f41ac12d78d244bb354e842841120, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381059364059748400, guid: 653f41ac12d78d244bb354e842841120, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381059364059748400, guid: 653f41ac12d78d244bb354e842841120, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381059364059748400, guid: 653f41ac12d78d244bb354e842841120, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381059364059748400, guid: 653f41ac12d78d244bb354e842841120, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381059364059748400, guid: 653f41ac12d78d244bb354e842841120, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381059364059748400, guid: 653f41ac12d78d244bb354e842841120, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381059364059748400, guid: 653f41ac12d78d244bb354e842841120, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 653f41ac12d78d244bb354e842841120, type: 3}
 --- !u!1 &1029721273
 GameObject:
   m_ObjectHideFlags: 0
@@ -4459,7 +4516,7 @@ GameObject:
   - component: {fileID: 1076062913}
   - component: {fileID: 1076062915}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Enemigo
   m_TagString: Enemigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6106,3 +6163,4 @@ SceneRoots:
   - {fileID: 1299798709}
   - {fileID: 1825124664}
   - {fileID: 1076062914}
+  - {fileID: 996281322}

@@ -23,7 +23,7 @@ public class AttackCollider : MonoBehaviour
     private void Update()
     {
         t += Time.deltaTime;
-        if (t>1)
+        if (t>0.5f)
         {
             GameObject.Destroy(gameObject);
         }
