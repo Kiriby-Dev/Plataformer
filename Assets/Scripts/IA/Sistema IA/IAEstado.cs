@@ -8,6 +8,12 @@ public class IAEstado : ScriptableObject
     public IAAccion[] Acciones;
     public IATransicion[] Transiciones;
 
+    public void EjecutarEstado(IAController controller) 
+    {
+        EjecutarAccion(controller);
+        RealizarTransiciones(controller);
+    }
+
     private void EjecutarAccion(IAController controller) 
     {
         if (Acciones == null || Acciones.Length <= 0) 
@@ -21,11 +27,24 @@ public class IAEstado : ScriptableObject
         }
     }
 
-    private void RalizarTransiciones(IAController controller) 
+    private void RealizarTransiciones(IAController controller) 
     {
         if (Transiciones == null || Transiciones.Length <= 0)
         {
             return;
+        }
+
+        for (int i = 0; i < Transiciones.Length; i++)
+        {
+            bool decisionValor = Transiciones[i].Decision.Decidir(controller);
+            if (decisionValor)
+            {
+                controller.CambiarEstado(Transiciones[i].EstadoVerdadero);
+            }
+            else 
+            {
+                controller.CambiarEstado(Transiciones[i].EstadoFalso);
+            }
         }
     }
 }
