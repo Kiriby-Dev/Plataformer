@@ -646,6 +646,7 @@ MonoBehaviour:
   velocidadAgachado: 4
   velocidadCorriendo: 8
   fuerzaSalto: 60
+  _input: 0
 --- !u!61 &945992004
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -861,6 +862,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackColl: {fileID: 2504283371360959135, guid: 46ab53c1399785e4fa68cbda2cdcc101, type: 3}
+  _personajeMovimiento: {fileID: 945992002}
+  look: 0
 --- !u!1001 &996281322
 PrefabInstance:
   m_ObjectHideFlags: 0

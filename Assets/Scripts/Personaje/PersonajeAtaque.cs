@@ -9,12 +9,22 @@ public class PersonajeAtaque : MonoBehaviour
     [SerializeField] private GameObject AttackColl;
 
     public static Action EventoAtaque;
+    Rigidbody2D _rigidbody;
 
-    float look;
+    public PersonajeMovimiento _personajeMovimiento;
+
+    public float look = 1f;
     float attackCool = 2;
     float timer;
+    bool ataque=false;
+
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
     void Update()
     {
+        timer += Time.deltaTime;
         if (attackCool < 0.5f)
         {
             attackCool += Time.deltaTime;
@@ -26,25 +36,27 @@ public class PersonajeAtaque : MonoBehaviour
         }
         else if (Input.GetKeyUp(KeyCode.A))
         {
-            look = -1; 
+            look = -1f; 
         }
 
         if (Input.GetMouseButtonDown(0) && attackCool>=0.5f)
         {
             timer = 0;
-            Vector2 posAtaque = new Vector2(gameObject.transform.position.x+look, gameObject.transform.position.y); 
+            _rigidbody.isKinematic = true;
+            _personajeMovimiento._input = 0;
+            _rigidbody.velocity = Vector3.zero;
+            gameObject.GetComponent<PersonajeMovimiento>().enabled = false;
+            Vector2 posAtaque = new Vector2(gameObject.transform.position.x+(look*1.25f), gameObject.transform.position.y); 
             Instantiate(AttackColl, posAtaque, Quaternion.identity);
-            gameObject.transform.position = new Vector2(gameObject.transform.position.x + (look * 5), gameObject.transform.position.y);
             attackCool = 0;
             EventoAtaque?.Invoke();
-            while (timer<0.6f) 
-            {
-                timer += Time.deltaTime;
-            }
-            if (timer>=0.6f)
-            {
-                gameObject.transform.position = new Vector2(gameObject.transform.position.x - (look*5), gameObject.transform.position.y);
-            }
+            ataque = true;
+        }
+        if (ataque && timer > 0.35f)
+        {
+            _rigidbody.isKinematic = false;
+            gameObject.GetComponent<PersonajeMovimiento>().enabled = true;
+            ataque = false;
         }
     }
 }

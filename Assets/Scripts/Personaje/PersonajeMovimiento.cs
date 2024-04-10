@@ -23,7 +23,7 @@ public class PersonajeMovimiento : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D _rigidbody2D;
     private Vector2 direccionMovimiento;
-    private float _input;
+    public float _input;
     private bool tocandoSuelo;
     private float jumpCooldown;
     private float jumpCoolMax;
