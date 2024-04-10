@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,6 +7,9 @@ using UnityEngine;
 public class PersonajeAtaque : MonoBehaviour
 {
     [SerializeField] private GameObject AttackColl;
+
+    public static Action EventoAtaque;
+
     float look;
     float attackCool = 2;
     void Update()
@@ -29,6 +33,7 @@ public class PersonajeAtaque : MonoBehaviour
             Vector2 posAtaque = new Vector2(gameObject.transform.position.x+look, gameObject.transform.position.y); 
             Instantiate(AttackColl, posAtaque, Quaternion.identity);
             attackCool = 0;
+            EventoAtaque?.Invoke();
         }
     }
 }
