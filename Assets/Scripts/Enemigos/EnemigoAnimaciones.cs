@@ -46,6 +46,20 @@ public class EnemigoAnimaciones : MonoBehaviour
         {
             animator.SetBool("EnMovimiento", false);
         }
-        
+    }
+
+    private void EnemigoAtaqueRespuesta()
+    {
+        animator.SetTrigger("Ataque");
+    }
+
+    private void OnEnable()
+    {
+        AccionAtacarPersonaje.EventoAtaque += EnemigoAtaqueRespuesta;
+    }
+
+    private void OnDisable()
+    {
+        AccionAtacarPersonaje.EventoAtaque -= EnemigoAtaqueRespuesta;
     }
 }

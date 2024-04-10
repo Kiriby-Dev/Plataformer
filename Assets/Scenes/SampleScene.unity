@@ -4570,7 +4570,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -470280861
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2121527688, guid: 8d76fb45704225a458a0f3ddaf4f8a1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4612,7 +4612,7 @@ MonoBehaviour:
   estadoInicial: {fileID: 11400000, guid: 263537fc687e06c49b0579f8c6ade443, type: 2}
   estadoDefault: {fileID: 11400000, guid: 674f0244214830045b092a8adf5ece70, type: 2}
   rangoDeteccion: 4
-  rangoDeAtaque: 2
+  rangoDeAtaque: 1.5
   velocidadMovimiento: 3
   personajeLayerMask:
     serializedVersion: 2

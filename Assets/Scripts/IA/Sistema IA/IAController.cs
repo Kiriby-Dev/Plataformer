@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -66,8 +67,16 @@ public class IAController : MonoBehaviour
         }
     }
 
-    public void AplicarDañoAlPersonaje(float cantidad) 
+    public void AplicarDañoAlPersonaje(float cantidad)
     {
+        StartCoroutine(ProcesoAplicarDaño(cantidad));
+    }
+
+    private IEnumerator ProcesoAplicarDaño(float cantidad)
+    {
+        yield return new WaitForSeconds(0.5f); // Espera 1 segundo
+
+        // Aplica el daño al personaje después de 1 segundo
         PersonajeReferencia.GetComponent<PersonajeVida>().RecibirDaño(cantidad);
     }
 
