@@ -6,9 +6,11 @@ using UnityEngine;
 public class PersonajeMovimiento : MonoBehaviour
 {
     [Header("Configuración")]
-    [SerializeField] private float velocidad;
+    [SerializeField] private float velocidadAgachado;
+    [SerializeField] private float velocidadCorriendo;
     [SerializeField] private float fuerzaSalto;
-    
+    private float velocidad;
+
     public static Action EventoSalto;
     public static Action<bool> EventoCaer;
     public static Action<bool> EventoAgachado;
@@ -57,12 +59,14 @@ public class PersonajeMovimiento : MonoBehaviour
         {
             agachado = true;
             dePie = false;
+            velocidad = velocidadAgachado;
             EventoAgachado?.Invoke(agachado);
         }
         else 
         {
             agachado = false;
             dePie = true;
+            velocidad = velocidadCorriendo;
             EventoAgachado?.Invoke(agachado);
         }
 
