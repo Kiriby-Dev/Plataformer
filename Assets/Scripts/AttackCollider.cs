@@ -13,7 +13,7 @@ public class AttackCollider : MonoBehaviour
     {
         t = 0;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(gameObject.transform.position, range, mask);
-        foreach (Collider2D enemy in hitEnemies)
+        foreach(Collider2D enemy in hitEnemies)
         {
             if (enemy.gameObject.tag == "Enemigo")
             {

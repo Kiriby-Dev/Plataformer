@@ -39,7 +39,7 @@ public class PersonajeAtaque : MonoBehaviour
             look = -1f; 
         }
 
-        if (Input.GetMouseButtonDown(0) && attackCool>=0.5f)
+        if (Input.GetMouseButtonDown(0) && attackCool>=0.5f && _personajeMovimiento.tocandoSuelo)
         {
             timer = 0;
             _rigidbody.isKinematic = true;

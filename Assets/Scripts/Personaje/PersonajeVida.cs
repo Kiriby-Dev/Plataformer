@@ -7,9 +7,14 @@ using UnityEngine;
 public class PersonajeVida : VidaBase
 {
     public static Action EventoPersonajeDerrotado;
+    Rigidbody2D rigidbody2;
    
     public bool PuedeSerCurado => Salud < saludMax;
 
+    private void Awake()
+    {
+        rigidbody2 = gameObject.GetComponent<Rigidbody2D>();
+    }
     protected override void Start()
     {
         base.Start();
@@ -30,6 +35,7 @@ public class PersonajeVida : VidaBase
         if (Salud <= 0)
         {
             gameObject.GetComponent<PersonajeMovimiento>().enabled = false;
+            rigidbody2.velocity = new Vector2 (0,rigidbody2.velocity.y);
         }
     }
 

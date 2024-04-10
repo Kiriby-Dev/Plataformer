@@ -24,7 +24,7 @@ public class PersonajeMovimiento : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Vector2 direccionMovimiento;
     public float _input;
-    private bool tocandoSuelo;
+    public bool tocandoSuelo;
     private float jumpCooldown;
     private float jumpCoolMax;
     private bool agachado;
