@@ -18,3 +18,6 @@ MonoBehaviour:
   - Decision: {fileID: 11400000, guid: 501ea31bba438d24d911a7ce9402aacb, type: 2}
     EstadoVerdadero: {fileID: 11400000, guid: 674f0244214830045b092a8adf5ece70, type: 2}
     EstadoFalso: {fileID: 11400000, guid: 263537fc687e06c49b0579f8c6ade443, type: 2}
+  - Decision: {fileID: 11400000, guid: f1df535cb03b1234eb034f1a274b4ab3, type: 2}
+    EstadoVerdadero: {fileID: 11400000, guid: 443e98766b6b16c45a0a546eb97672c5, type: 2}
+    EstadoFalso: {fileID: 11400000, guid: 674f0244214830045b092a8adf5ece70, type: 2}

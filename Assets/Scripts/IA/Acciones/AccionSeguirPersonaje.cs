@@ -23,8 +23,6 @@ public class AccionSeguirPersonaje : IAAccion
         if (distancia >= 1.5f) 
         {
             controller.transform.Translate(direccion * controller.VelocidadMovimiento * Time.deltaTime);
-            Debug.Log("Seguir");
         }
-        Debug.DrawRay(controller.transform.position, dirHaciaPersonaje, Color.blue);
     }
 }
