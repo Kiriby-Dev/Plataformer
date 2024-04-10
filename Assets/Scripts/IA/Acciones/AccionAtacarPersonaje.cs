@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "IA/Acciones/AtacarPersonaje")]
 public class AccionAtacarPersonaje : IAAccion
 {
+    public static Action EventoAtaque;
     public override void Ejecutar(IAController controller)
     {
         Atacar(controller);
@@ -19,6 +21,7 @@ public class AccionAtacarPersonaje : IAAccion
 
         if (controller.PersonajeEnRangoDeAtaque(controller.RangoDeAtaque)) 
         {
+            EventoAtaque?.Invoke();
             controller.AtaqueMelee(controller.Daño);
             controller.ActualizarTiempoEntreAtaques();
         }
