@@ -27,7 +27,7 @@ public class EnemigoAnimaciones : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (controller.PersonajeReferencia != null) 
+        if (controller.PersonajeReferencia != null)
         {
             Vector3 dirHaciaPersonaje = (controller.PersonajeReferencia.position - controller.transform.position).normalized;
 
@@ -39,6 +39,13 @@ public class EnemigoAnimaciones : MonoBehaviour
             {
                 spriteRenderer.flipX = true;
             }
+
+            animator.SetBool("EnMovimiento", true);
         }
+        else 
+        {
+            animator.SetBool("EnMovimiento", false);
+        }
+        
     }
 }
