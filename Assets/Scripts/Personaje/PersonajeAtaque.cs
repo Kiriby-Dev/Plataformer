@@ -9,18 +9,19 @@ public class PersonajeAtaque : MonoBehaviour
     [SerializeField] private GameObject AttackColl;
 
     public static Action EventoAtaque;
-    Rigidbody2D _rigidbody;
+    private Rigidbody2D _rigidbody;
 
-    public PersonajeMovimiento _personajeMovimiento;
+    private PersonajeMovimiento _personajeMovimiento;
 
-    public float look = 1f;
-    float attackCool = 2;
-    float timer;
-    bool ataque=false;
+    private float look = 1f;
+    private float attackCool = 2;
+    private float timer;
+    private bool ataque=false;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _personajeMovimiento = GetComponent<PersonajeMovimiento>();
     }
     void Update()
     {

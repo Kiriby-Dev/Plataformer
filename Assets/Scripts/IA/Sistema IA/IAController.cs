@@ -75,8 +75,6 @@ public class IAController : MonoBehaviour
     private IEnumerator ProcesoAplicarDaño(float cantidad)
     {
         yield return new WaitForSeconds(0.5f); // Espera 1 segundo
-
-        // Aplica el daño al personaje después de 1 segundo
         PersonajeReferencia.GetComponent<PersonajeVida>().RecibirDaño(cantidad);
     }
 

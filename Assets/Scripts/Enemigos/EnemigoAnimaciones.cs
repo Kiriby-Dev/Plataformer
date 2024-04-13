@@ -9,6 +9,7 @@ public class EnemigoAnimaciones : MonoBehaviour
     private Animator animator;
     private Rigidbody2D enemigo;
     private SpriteRenderer spriteRenderer;
+    private EnemigoVida enemigoVida;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class EnemigoAnimaciones : MonoBehaviour
         enemigo = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         controller = GetComponent<IAController>();
+        enemigoVida = controller.GetComponent<EnemigoVida>();
     }
 
     // Start is called before the first frame update
@@ -53,13 +55,41 @@ public class EnemigoAnimaciones : MonoBehaviour
         animator.SetTrigger("Ataque");
     }
 
+    private void EnemigoDañadoRespuesta()
+    {
+        animator.SetTrigger("Dañado");
+    }
+
+    private void EnemigoDerrotadoRespuesta()
+    {
+        animator.SetBool("Derrotado", true);
+    }
+
     private void OnEnable()
     {
         AccionAtacarPersonaje.EventoAtaque += EnemigoAtaqueRespuesta;
+        if (enemigoVida != null) 
+        {
+            enemigoVida.EventoEnemigoDerrotado += EnemigoDerrotadoRespuesta;
+        }
+
+        if (enemigoVida != null)
+        {
+            enemigoVida.EventoEnemigoDañado += EnemigoDañadoRespuesta;
+        }
     }
 
     private void OnDisable()
     {
         AccionAtacarPersonaje.EventoAtaque -= EnemigoAtaqueRespuesta;
+        if (enemigoVida != null)
+        {
+            enemigoVida.EventoEnemigoDerrotado -= EnemigoDerrotadoRespuesta;
+        }
+
+        if (enemigoVida != null)
+        {
+            enemigoVida.EventoEnemigoDañado -= EnemigoDañadoRespuesta;
+        }
     }
 }

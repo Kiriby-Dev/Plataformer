@@ -15,20 +15,13 @@ public class PersonajeCollider : MonoBehaviour
 
     void Update()
     {
-        if (personajevida.Salud>0)
+        if (personajevidaMovimiento.DePie)
         {
-            if (personajevidaMovimiento.DePie)
-            {
-                gameObject.GetComponent<BoxCollider2D>().size = new Vector2(1.1f, 2f);
-            }
-            else if (personajevidaMovimiento.Agachado)
-            {
-                gameObject.GetComponent<BoxCollider2D>().size = new Vector2(1.1f, 1.5f);
-            }
+            gameObject.GetComponent<BoxCollider2D>().size = new Vector2(1.1f, 2f);
         }
-        else
+        else if (personajevidaMovimiento.Agachado)
         {
-            gameObject.GetComponent<BoxCollider2D>().size = new Vector2(2.2f, 0.65f);
+            gameObject.GetComponent<BoxCollider2D>().size = new Vector2(1.1f, 1.5f);
         }
     }
 }

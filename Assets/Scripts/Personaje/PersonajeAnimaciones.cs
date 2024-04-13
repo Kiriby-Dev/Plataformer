@@ -70,6 +70,11 @@ public class PersonajeAnimaciones : MonoBehaviour
         animator.SetBool("Cayendo", cayendo);
     }
 
+    private void PersonajeDañadoRespuesta()
+    {
+        animator.SetTrigger("Dañado");
+    }
+
     private void PersonajeDerrotadoRespuesta() 
     {
         if (animator.GetLayerWeight(animator.GetLayerIndex(layerCorrer)) == 1 || animator.GetLayerWeight(animator.GetLayerIndex(layerIdle)) == 1)
@@ -81,6 +86,7 @@ public class PersonajeAnimaciones : MonoBehaviour
     private void OnEnable()
     {
         PersonajeVida.EventoPersonajeDerrotado += PersonajeDerrotadoRespuesta;
+        PersonajeVida.EventoPersonajeDañado += PersonajeDañadoRespuesta;
         PersonajeMovimiento.EventoSalto += PersonajeSaltoRespuesta;
         PersonajeMovimiento.EventoCaer += PersonajeCayendoRespuesta;
         PersonajeMovimiento.EventoAgachado += PersonajeAgachadoRespuesta;
@@ -90,6 +96,7 @@ public class PersonajeAnimaciones : MonoBehaviour
     private void OnDisable()
     {
         PersonajeVida.EventoPersonajeDerrotado -= PersonajeDerrotadoRespuesta;
+        PersonajeVida.EventoPersonajeDañado -= PersonajeDañadoRespuesta;
         PersonajeMovimiento.EventoSalto -= PersonajeSaltoRespuesta;
         PersonajeMovimiento.EventoCaer -= PersonajeCayendoRespuesta;
         PersonajeMovimiento.EventoAgachado -= PersonajeAgachadoRespuesta;

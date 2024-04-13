@@ -9,7 +9,10 @@ public class AccionAtacarPersonaje : IAAccion
     public static Action EventoAtaque;
     public override void Ejecutar(IAController controller)
     {
-        Atacar(controller);
+        if (controller.gameObject.GetComponent<EnemigoVida>().Salud > 0 && !controller.gameObject.GetComponent<EnemigoVida>().EstaInmovilizado) 
+        {
+            Atacar(controller);
+        }
     }
 
     private void Atacar(IAController controller) 

@@ -7,7 +7,10 @@ public class AccionSeguirPersonaje : IAAccion
 {
     public override void Ejecutar(IAController controller)
     {
-        SeguirPersonaje(controller);
+        if (controller.gameObject.GetComponent<EnemigoVida>().Salud > 0 && !controller.gameObject.GetComponent<EnemigoVida>().EstaInmovilizado)
+        {
+            SeguirPersonaje(controller);
+        }
     }
 
     private void SeguirPersonaje(IAController controller) 

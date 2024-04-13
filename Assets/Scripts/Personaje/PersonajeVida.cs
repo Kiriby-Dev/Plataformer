@@ -7,6 +7,7 @@ using UnityEngine;
 public class PersonajeVida : VidaBase
 {
     public static Action EventoPersonajeDerrotado;
+    public static Action EventoPersonajeDañado;
     Rigidbody2D rigidbody2;
    
     public bool PuedeSerCurado => Salud < saludMax;
@@ -21,8 +22,9 @@ public class PersonajeVida : VidaBase
         ActualizarBarraVida(Salud, saludMax);
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (Input.GetKeyDown(KeyCode.T)) 
         {
             RecibirDaño(10);
@@ -55,6 +57,18 @@ public class PersonajeVida : VidaBase
     protected override void PersonajeDerrotado()
     {
         EventoPersonajeDerrotado?.Invoke();
+    }
+
+    protected override void PersonajeGolpeado()
+    {
+        EventoPersonajeDañado?.Invoke();
+    }
+
+    protected override void InmovilizarPersonaje(bool valor)
+    {
+        rigidbody2.velocity = Vector2.zero;
+        rigidbody2.GetComponent<PersonajeMovimiento>().enabled = !valor;
+        rigidbody2.GetComponent<PersonajeAtaque>().enabled = !valor;
     }
 
     protected override void ActualizarBarraVida(float vidaActual, float vidaMax)

@@ -9,6 +9,8 @@ public class AttackCollider : MonoBehaviour
     float t;
     [SerializeField] private float range;
     [SerializeField] private LayerMask mask;
+    [SerializeField] private float daño;
+
     private void Awake()
     {
         t = 0;
@@ -17,7 +19,7 @@ public class AttackCollider : MonoBehaviour
         {
             if (enemy.gameObject.tag == "Enemigo")
             {
-                GameObject.Destroy(enemy.gameObject);
+                enemy.gameObject.GetComponent<EnemigoVida>().RecibirDaño(daño);
             }
         }
     }
