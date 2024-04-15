@@ -13,10 +13,10 @@ public class PersonajeAtaque : MonoBehaviour
 
     private PersonajeMovimiento _personajeMovimiento;
 
-    [SerializeField] private float look = 1f;
+    private float look = 1f;
     private float attackCool = 2;
     private float timer;
-    private bool ataque=false;
+    public bool ataque=false;
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class PersonajeAtaque : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (attackCool < 0.5f)
+        if (attackCool < 1f)
         {
             attackCool += Time.deltaTime;
         }
@@ -44,7 +44,7 @@ public class PersonajeAtaque : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && attackCool>=0.5f && _personajeMovimiento.tocandoSuelo)
+        if (Input.GetMouseButtonDown(0) && attackCool>=1f && _personajeMovimiento.tocandoSuelo)
         {
             timer = 0;
             _rigidbody.isKinematic = true;
