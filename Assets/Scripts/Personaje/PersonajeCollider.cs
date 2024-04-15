@@ -19,7 +19,7 @@ public class PersonajeCollider : MonoBehaviour
 
     void Update()
     {
-        if (!personajeAtaque.ataque)
+        if (!personajeAtaque.Ataque)
         {
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {

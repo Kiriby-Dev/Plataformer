@@ -8,18 +8,16 @@ public class EnemigoAnimaciones : MonoBehaviour
     [Header("Sonido")]
     [SerializeField] private AudioClip enemyHit;
     [SerializeField] private AudioClip enemyDeath;
-    [SerializeField] private AudioClip enemyAttack;
 
     private IAController controller;
     private Animator animator;
-    private Rigidbody2D enemigo;
     private SpriteRenderer spriteRenderer;
     private EnemigoVida enemigoVida;
+    private AccionAtacarPersonaje enemigoAtaque;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        enemigo = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         controller = GetComponent<IAController>();
         enemigoVida = controller.GetComponent<EnemigoVida>();
@@ -58,7 +56,6 @@ public class EnemigoAnimaciones : MonoBehaviour
     private void EnemigoAtaqueRespuesta()
     {
         animator.SetTrigger("Ataque");
-        ControladorSonido.Instance.EjecutarSonido(enemyAttack);
     }
 
     private void EnemigoDañadoRespuesta()
@@ -75,28 +72,22 @@ public class EnemigoAnimaciones : MonoBehaviour
 
     private void OnEnable()
     {
-        AccionAtacarPersonaje.EventoAtaque += EnemigoAtaqueRespuesta;
-        if (enemigoVida != null) 
-        {
-            enemigoVida.EventoEnemigoDerrotado += EnemigoDerrotadoRespuesta;
-        }
+        controller.EventoAtaque += EnemigoAtaqueRespuesta;
 
         if (enemigoVida != null)
         {
+            enemigoVida.EventoEnemigoDerrotado += EnemigoDerrotadoRespuesta;
             enemigoVida.EventoEnemigoDañado += EnemigoDañadoRespuesta;
         }
     }
 
     private void OnDisable()
     {
-        AccionAtacarPersonaje.EventoAtaque -= EnemigoAtaqueRespuesta;
-        if (enemigoVida != null)
-        {
-            enemigoVida.EventoEnemigoDerrotado -= EnemigoDerrotadoRespuesta;
-        }
+        controller.EventoAtaque -= EnemigoAtaqueRespuesta;
 
         if (enemigoVida != null)
         {
+            enemigoVida.EventoEnemigoDerrotado -= EnemigoDerrotadoRespuesta;
             enemigoVida.EventoEnemigoDañado -= EnemigoDañadoRespuesta;
         }
     }

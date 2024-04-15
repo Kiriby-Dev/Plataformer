@@ -20,11 +20,15 @@ public class IAController : MonoBehaviour
     [SerializeField] private float rangoDeAtaque;
     [SerializeField] private float velocidadMovimiento;
     [SerializeField] private LayerMask personajeLayerMask;
+    [SerializeField] private Animator animator;
 
     [Header("Ataque")]
     [SerializeField] private float daño;
     [SerializeField] private float tiempoEntreAtaques;
     [SerializeField] private TiposDeAtaque tipoAtaque;
+
+    [Header("Sonido")]
+    [SerializeField] private AudioClip enemyAttack;
 
     [Header("Debug")]
     [SerializeField] private bool mostrarDeteccion;
@@ -32,6 +36,7 @@ public class IAController : MonoBehaviour
 
     private float tiempoParaSiguienteAtaque;
 
+    public Action EventoAtaque;
     public Transform PersonajeReferencia { get; set; }
     public IAEstado EstadoActual { get; set; }
     public float RangoDeteccion => rangoDeteccion;
@@ -44,6 +49,7 @@ public class IAController : MonoBehaviour
     private void Start()
     {
         EstadoActual = estadoInicial;
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -61,10 +67,8 @@ public class IAController : MonoBehaviour
 
     public void AtaqueMelee(float cantidad) 
     {
-        if (PersonajeReferencia != null) 
-        {
-            AplicarDañoAlPersonaje(cantidad);
-        }
+        EventoAtaque?.Invoke();
+        AplicarDañoAlPersonaje(cantidad);
     }
 
     public void AplicarDañoAlPersonaje(float cantidad)
@@ -75,11 +79,20 @@ public class IAController : MonoBehaviour
     private IEnumerator ProcesoAplicarDaño(float cantidad)
     {
         yield return new WaitForSeconds(0.5f); // Espera 1 segundo
-        PersonajeReferencia.GetComponent<PersonajeVida>().RecibirDaño(cantidad);
+        if (PersonajeEnRangoDeAtaque(RangoDeAtaque) && animator.GetCurrentAnimatorStateInfo(0).IsName("Ataque")) 
+        {
+            PersonajeReferencia.GetComponent<PersonajeVida>().RecibirDaño(cantidad);
+            ControladorSonido.Instance.EjecutarSonido(enemyAttack);
+        }
     }
 
     public bool PersonajeEnRangoDeAtaque(float rango) 
     {
+        if (PersonajeReferencia == null)
+        {
+            return false;
+        }
+
         float distanciaHaciaPersonaje = (PersonajeReferencia.position - transform.position).sqrMagnitude;
         if (distanciaHaciaPersonaje < Mathf.Pow(rango, 2)) 
         {

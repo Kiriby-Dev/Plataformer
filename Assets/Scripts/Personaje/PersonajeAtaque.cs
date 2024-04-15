@@ -8,16 +8,18 @@ public class PersonajeAtaque : MonoBehaviour
 {
     [SerializeField] private GameObject AttackColl;
     [SerializeField] private AudioClip ataqueSonido;
+    [SerializeField] private float attackCooldown;
 
     public static Action EventoAtaque;
-    private Rigidbody2D _rigidbody;
 
+    public bool Ataque => ataque;
+    
+    private Rigidbody2D _rigidbody;
     private PersonajeMovimiento _personajeMovimiento;
 
     private float look = 1f;
-    private float attackCool = 2;
     private float timer;
-    public bool ataque=false;
+    private bool ataque = false;
 
     private void Awake()
     {
@@ -27,9 +29,9 @@ public class PersonajeAtaque : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (attackCool < 1f)
+        if (attackCooldown < 1f)
         {
-            attackCool += Time.deltaTime;
+            attackCooldown += Time.deltaTime;
         }
         
         if (!(Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.A)))
@@ -45,7 +47,7 @@ public class PersonajeAtaque : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && attackCool>=1f && _personajeMovimiento.tocandoSuelo)
+        if (Input.GetMouseButtonDown(0) && attackCooldown >= 1f && _personajeMovimiento.tocandoSuelo)
         {
             ControladorSonido.Instance.EjecutarSonido(ataqueSonido);
             timer = 0;
@@ -55,7 +57,7 @@ public class PersonajeAtaque : MonoBehaviour
             gameObject.GetComponent<PersonajeMovimiento>().enabled = false;
             Vector2 posAtaque = new Vector2(gameObject.transform.position.x+(look*1.25f), gameObject.transform.position.y); 
             Instantiate(AttackColl, posAtaque, Quaternion.identity);
-            attackCool = 0;
+            attackCooldown = 0;
             EventoAtaque?.Invoke();
             ataque = true;
         }

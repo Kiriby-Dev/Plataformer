@@ -197,15 +197,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   estadoInicial: {fileID: 11400000, guid: 263537fc687e06c49b0579f8c6ade443, type: 2}
   estadoDefault: {fileID: 11400000, guid: 674f0244214830045b092a8adf5ece70, type: 2}
-  rangoDeteccion: 4
-  rangoDeAtaque: 1.5
+  rangoDeteccion: 6
+  rangoDeAtaque: 2.5
   velocidadMovimiento: 3
   personajeLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  animator: {fileID: 569861639495469988}
   "da\xF1o": 10
-  tiempoEntreAtaques: 2
+  tiempoEntreAtaques: 1.5
   tipoAtaque: 0
+  enemyAttack: {fileID: 8300000, guid: f634b6df4394ad7449941114faadb5d1, type: 3}
   mostrarDeteccion: 1
   mostrarRangoAtaque: 1
 --- !u!114 &9012410231342561911
@@ -222,7 +224,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHit: {fileID: 8300000, guid: 49ee66f536786dc4b90b99700e4192da, type: 3}
   enemyDeath: {fileID: 8300000, guid: 7c6d79a2e994a1249ad5ff4dd21f74a2, type: 3}
-  enemyAttack: {fileID: 8300000, guid: f634b6df4394ad7449941114faadb5d1, type: 3}
 --- !u!114 &4020668681369699164
 MonoBehaviour:
   m_ObjectHideFlags: 0
