@@ -13,7 +13,7 @@ public class PersonajeAtaque : MonoBehaviour
 
     private PersonajeMovimiento _personajeMovimiento;
 
-    private float look = 1f;
+    [SerializeField] private float look = 1f;
     private float attackCool = 2;
     private float timer;
     private bool ataque=false;
@@ -31,13 +31,17 @@ public class PersonajeAtaque : MonoBehaviour
             attackCool += Time.deltaTime;
         }
         
-        if (Input.GetKeyUp(KeyCode.D))
+        if (!(Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.A)))
         {
-            look = 1;
-        }
-        else if (Input.GetKeyUp(KeyCode.A))
-        {
-            look = -1f; 
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                look = 1;
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                look = -1f;
+            }
         }
 
         if (Input.GetMouseButtonDown(0) && attackCool>=0.5f && _personajeMovimiento.tocandoSuelo)
