@@ -5,6 +5,11 @@ using UnityEngine.Windows;
 
 public class EnemigoAnimaciones : MonoBehaviour
 {
+    [Header("Sonido")]
+    [SerializeField] private AudioClip enemyHit;
+    [SerializeField] private AudioClip enemyDeath;
+    [SerializeField] private AudioClip enemyAttack;
+
     private IAController controller;
     private Animator animator;
     private Rigidbody2D enemigo;
@@ -53,16 +58,19 @@ public class EnemigoAnimaciones : MonoBehaviour
     private void EnemigoAtaqueRespuesta()
     {
         animator.SetTrigger("Ataque");
+        ControladorSonido.Instance.EjecutarSonido(enemyAttack);
     }
 
     private void EnemigoDañadoRespuesta()
     {
         animator.SetTrigger("Dañado");
+        ControladorSonido.Instance.EjecutarSonido(enemyHit);
     }
 
     private void EnemigoDerrotadoRespuesta()
     {
         animator.SetBool("Derrotado", true);
+        ControladorSonido.Instance.EjecutarSonido(enemyDeath);
     }
 
     private void OnEnable()

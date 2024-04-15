@@ -220,6 +220,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2820258987af542bd38ea1a650ade3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHit: {fileID: 8300000, guid: 49ee66f536786dc4b90b99700e4192da, type: 3}
+  enemyDeath: {fileID: 8300000, guid: 7c6d79a2e994a1249ad5ff4dd21f74a2, type: 3}
+  enemyAttack: {fileID: 8300000, guid: f634b6df4394ad7449941114faadb5d1, type: 3}
 --- !u!114 &4020668681369699164
 MonoBehaviour:
   m_ObjectHideFlags: 0

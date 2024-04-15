@@ -9,7 +9,12 @@ public class PersonajeMovimiento : MonoBehaviour
     [SerializeField] private float velocidadAgachado;
     [SerializeField] private float velocidadCorriendo;
     [SerializeField] private float fuerzaSalto;
-    private float velocidad;
+
+    [Header("Sonido")]
+    [SerializeField] private AudioClip saltoSonido;
+    [SerializeField] private AudioClip landingSonido;
+    [SerializeField] private float velocidadPasosNormal = 1f;
+    [SerializeField] private float velocidadPasosAgachado = 0.5f;
 
     public static Action EventoSalto;
     public static Action<bool> EventoCaer;
@@ -22,7 +27,9 @@ public class PersonajeMovimiento : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D _rigidbody2D;
+    private AudioSource correrSonido;
     private Vector2 direccionMovimiento;
+    private float velocidad;
     public float _input;
     public bool tocandoSuelo;
     private float jumpCooldown;
@@ -34,6 +41,7 @@ public class PersonajeMovimiento : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        correrSonido = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -75,6 +83,7 @@ public class PersonajeMovimiento : MonoBehaviour
             tocandoSuelo = false;
             jumpCooldown = jumpCoolMax;
             _rigidbody2D.AddForce(new Vector2(0, fuerzaSalto), ForceMode2D.Impulse);
+            ControladorSonido.Instance.EjecutarSonido(saltoSonido);
             PersonajeSalto();
         }
         bool cayendo = _rigidbody2D.velocity.y < -0.1f;
@@ -100,7 +109,7 @@ public class PersonajeMovimiento : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Suelo")
         {
@@ -118,6 +127,23 @@ public class PersonajeMovimiento : MonoBehaviour
     private void FixedUpdate()
     {
         _rigidbody2D.velocity = new Vector2(direccionMovimiento.x * velocidad, _rigidbody2D.velocity.y);
+        
+        if (_rigidbody2D.velocity.x != 0f && tocandoSuelo)
+        {
+            if (!correrSonido.isPlaying)
+            {
+                if (agachado)
+                {
+                    correrSonido.pitch = velocidadPasosAgachado;
+                }
+                else
+                {
+                    correrSonido.pitch = velocidadPasosNormal;
+                }
+
+                correrSonido.Play();
+            }
+        }
     }
 
     private void PersonajeSalto()

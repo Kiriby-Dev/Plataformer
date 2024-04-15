@@ -7,6 +7,7 @@ using UnityEngine;
 public class PersonajeAtaque : MonoBehaviour
 {
     [SerializeField] private GameObject AttackColl;
+    [SerializeField] private AudioClip ataqueSonido;
 
     public static Action EventoAtaque;
     private Rigidbody2D _rigidbody;
@@ -46,6 +47,7 @@ public class PersonajeAtaque : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && attackCool>=1f && _personajeMovimiento.tocandoSuelo)
         {
+            ControladorSonido.Instance.EjecutarSonido(ataqueSonido);
             timer = 0;
             _rigidbody.isKinematic = true;
             _personajeMovimiento._input = 0;

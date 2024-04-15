@@ -24,6 +24,7 @@ public class EnemigoVida : VidaBase
         if (Salud <= 0)
         {
             rigidbody2.velocity = new Vector2(0, rigidbody2.velocity.y);
+            gameObject.GetComponent<EnemigoAnimaciones>().enabled = false;
         }
         else 
         {

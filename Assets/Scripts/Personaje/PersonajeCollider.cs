@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class PersonajeCollider : MonoBehaviour
 {
-    public PersonajeVida personajevida;
-    public PersonajeMovimiento personajevidaMovimiento;
-    public PersonajeAtaque personajeAtaque;
+    private PersonajeVida personajeVida;
+    private PersonajeMovimiento personajevidaMovimiento;
+    private PersonajeAtaque personajeAtaque;
+    
     void Start()
     {
-
+        personajeAtaque = GetComponent<PersonajeAtaque>();
+        personajeVida = GetComponent<PersonajeVida>();
+        personajevidaMovimiento = GetComponent<PersonajeMovimiento>();
     }
 
 
