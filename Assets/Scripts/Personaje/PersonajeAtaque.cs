@@ -47,7 +47,7 @@ public class PersonajeAtaque : MonoBehaviour
             }
         }
 
-        if ((Input.GetMouseButtonDown(0)||Input.GetKeyDown(KeyCode.K)) && attackCool>=1f && _personajeMovimiento.tocandoSuelo)
+        if ((Input.GetMouseButtonDown(0)||Input.GetKeyDown(KeyCode.K)) && attackCooldown>=1f && _personajeMovimiento.tocandoSuelo)
         {
             ControladorSonido.Instance.EjecutarSonido(ataqueSonido);
             timer = 0;
