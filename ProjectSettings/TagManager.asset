@@ -49,6 +49,9 @@ TagManager:
   - name: Piso
     uniqueID: 1434327591
     locked: 0
+  - name: Prompts
+    uniqueID: 3233198013
+    locked: 0
   - name: Personaje
     uniqueID: 3824686435
     locked: 0

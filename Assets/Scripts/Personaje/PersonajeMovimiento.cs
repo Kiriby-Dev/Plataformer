@@ -9,6 +9,7 @@ public class PersonajeMovimiento : MonoBehaviour
     [SerializeField] private float velocidadAgachado;
     [SerializeField] private float velocidadCorriendo;
     [SerializeField] private float fuerzaSalto;
+    [SerializeField] private ParticleSystem dust;
 
     [Header("Sonido")]
     [SerializeField] private AudioClip saltoSonido;
@@ -50,11 +51,19 @@ public class PersonajeMovimiento : MonoBehaviour
 
         if (_input > 0f)
         {
+            if (!agachado)
+            {
+                CrearDust();
+            }
             direccionMovimiento.x = 1f;
             spriteRenderer.flipX = false;
         }
         else if (_input < 0f)
         {
+            if (!agachado) 
+            {
+                CrearDust();
+            }
             direccionMovimiento.x = -1f;
             spriteRenderer.flipX = true;
         }
@@ -149,5 +158,10 @@ public class PersonajeMovimiento : MonoBehaviour
     private void PersonajeSalto()
     {
         EventoSalto?.Invoke();
+    }
+
+    private void CrearDust()
+    {
+        dust.Play();
     }
 }
