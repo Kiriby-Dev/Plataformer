@@ -3,3 +3,6 @@
 
 # Asociar archivos .cs con C#
 *.cs linguist-language=C#
+
+*.shader linguist-vendored
+*.cginc linguist-vendored
